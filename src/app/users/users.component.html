@@ -1,0 +1,5 @@
+<div class="card-body contacts_body">
+  <ul class="contacts">
+    <app-user [admin]="admin" [user]="user" *ngFor="let user of users | reverse"></app-user>
+  </ul>
+</div>

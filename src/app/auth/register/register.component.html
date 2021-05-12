@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-4"></div>
+  <div id="register-form" class="col-md-4">
+    <h2 style="text-align: center;">Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">User Name</label>
+        <input formControlName="username" type="username" class="form-control">
+      </div>
+      <div class="form-group">
+        <span *ngIf="registerForm.hasError('userExists') && registerForm.controls.username.touched" class="alert alert-danger">Username exists!</span>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input formControlName="email" type="email" class="form-control">
+      </div>
+
+      <div formGroupName="passwordGroup">
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input formControlName="password1" type="password" class="form-control">
+        </div>
+        <div class="form-group">
+          <label (mouseleave)="setTouched()"  (click)="setUnTouched()" for="exampleInputPassword2">Repeat Password</label>
+          <input formControlName="password2" type="password" class="form-control">
+        </div>
+      </div>
+      <div *ngIf="registerForm.controls.passwordGroup.errors && registerForm.controls.passwordGroup.get('password2').touched" class="alert alert-danger" role="alert">
+        The Passwords are not equal!
+      </div>
+      <div class="form-group">
+        <img *ngIf="registerForm.pending" style="width: 60px;" src="https://media.tenor.com/images/0a000667c5aab43ac265d8c86a4bb310/tenor.gif" alt="">
+      </div>
+      <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary">Submit</button>
+
+    </form>
+  </div>
+  <div class="col-md-4"></div>
+</div>

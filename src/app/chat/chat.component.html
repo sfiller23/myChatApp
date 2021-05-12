@@ -1,0 +1,43 @@
+<div (window:resize)="onResize($event)" class="row" style="display: block; background-color: rgb(107 130 204); text-align: center; position: fixed; width: 100%; z-index: 1;">
+  <app-header (phoneState)="onToggle($event)"></app-header>
+</div>
+<div class="row chat-container">
+  <div #messages (scroll)="setYposition(messages, 'messages')" class="col col-md-9 scroll messages">
+    <app-chat-boxes [messageLoading]="messageLoading" (setMessage)="setCurrentMessage($event)" class="row chatBoxes" [admin]="admin"></app-chat-boxes>
+    <form *ngIf="isActive" style="display: block; position: fixed; bottom: 9%; width: 70%;" #messageForm="ngForm">
+      <div class="card-footer">
+        <div class="currentUser"><span style="color:rgb(170, 170, 170);">Chating with:</span> {{admin.id === chatBox.admin.id ? chatBox.contact.username : chatBox.admin.username}}</div>
+        <div class="input-group">
+          <div class="input-group-append">
+            <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+          </div>
+          <textarea (click)="seen()" ngModel #textArea [(ngModel)]="boxesMessage[index]" name="message" class="form-control type_msg" minLength="1" required="true" placeholder="Type your message..." ></textarea>
+          <div class="input-group-append">
+            <button (click)="sendMessage()" [disabled]="messageForm.invalid"  class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- not active: -->
+    <form #messageForm="ngForm" *ngIf="!isActive" style="display: block; position: fixed; bottom: 9%; width: 70%;">
+      <div class="card-footer" style="background-color: darkred;">
+        <div class="input-group">
+          <div class="input-group-append">
+            <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+          </div>
+          <textarea #textArea [disabled]="!isActive" ngModel [(ngModel)]="boxesMessage[index]" name="message" class="form-control type_msg" minLength="1" required="true" placeholder="Click on a contact to start chating..." ></textarea>
+          <div class="input-group-append">
+            <button [disabled]="messageForm.invalid || !isActive"  class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div #contacts (scroll)="setYposition(contacts, 'contacts')" class="col col-md-3 scroll contacts">
+      <app-users [admin]="admin"></app-users>
+  </div>
+</div>
+<div class="row shadow" style="display: block; position: fixed; bottom: 0%; width: 100%; text-align: center; background-color: rgb(107 130 204);" >
+    <app-footer [admin]="admin" ></app-footer>
+</div>
+

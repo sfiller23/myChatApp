@@ -1,0 +1,17 @@
+<li *ngIf="user.id !== admin.id" [ngClass]="{'active': isActive}" (click)="onUserClick(user)">
+  <div [ngStyle]="{backgroundColor: newMessage && lastMessageOwner.id !== admin.id ? 'lightgreen' : 'transparent'}" class="d-flex bd-highlight">
+    <p *ngIf="newMessage && !newBox && lastMessageOwner.id !== admin.id">New Message!</p>
+    <p *ngIf="newMessage && newBox && lastMessageOwner.id !== admin.id">Contact wants to chat!</p>
+    <div class="img_cont">
+      <span class="online_icon" [ngClass]="{'offline': !user.isLogedin}"></span>
+    </div>
+    <div class="user_info">
+      <span>{{user.username}}</span>
+      <p *ngIf="user.isLogedin">Online</p>
+      <p *ngIf="!user.isLogedin">Offline</p>
+    </div>
+  </div>
+</li>
+<hr>
+
+

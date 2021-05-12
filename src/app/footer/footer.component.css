@@ -1,0 +1,13 @@
+.col{
+  display: contents;
+}
+h2{
+  display: contents;
+  line-height: unset;
+
+}
+
+button{
+  margin-bottom: 1%;
+  margin-left: 1%;
+}

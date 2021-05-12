@@ -1,0 +1,59 @@
+<div *ngFor="let chatBox of chatBoxes; let i = index; let last = last; let first = first" class="col-md-6 col-xl-4 col-sm-12 chat">
+  <div *ngIf="admin.id === chatBox.admin.id">
+    <div *ngIf="!deleteLoader[i]" [ngStyle]="{backgroundColor: !chatBox.activeSide.admin.isActive ? 'rgb(4 2 2 / 62%)' : 'rgba(0,0,0,0.4)', cursor: !chatBox.activeSide.admin.isActive ? 'pointer' : 'unset'}" class="card" [ngClass]="{'notActive': !chatBox.activeSide.admin.isActive}">
+      <div [ngStyle]="{backgroundColor: !chatBox.seen && chatBox.messages[chatBox.messages.length-1].owner.id !== admin.id ? 'lightgreen' : 'transparent'}" class="card-header msg_head">
+        <p *ngIf="!chatBox.seen && chatBox.messages[chatBox.messages.length-1].owner.id !== admin.id && chatBox.messages.length>1">New Message!</p>
+        <p *ngIf="!chatBox.seen && chatBox.messages[chatBox.messages.length-1].owner.id !== admin.id && chatBox.messages.length===1">Contact wants to chat!</p>
+
+        <button class="delete btn btn-danger btn-sm rounded-0 float-right" (click)="deleteBox(i, chatBox.id)" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </button>
+
+        <div class="d-flex bd-highlight">
+          <div class="user_info">
+            <span>{{chatBox.contact.username}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div (click)="onSetMessage(chatBox, i)" #messageBody (scroll)="setYposition(messageBody, i)" class="card-body msg_card_body">
+        <h2 class="enable" *ngIf="!chatBox.activeSide.admin.isActive">Click to enable...</h2>
+        <app-messages [messageLoading]="messageLoading" *ngIf="!boxesLoading[i]" [chatBox]="chatBox" [admin]="admin" [messages]="chatBox.messages"></app-messages>
+        <img *ngIf="boxesLoading[i]" src="https://media.tenor.com/images/0a000667c5aab43ac265d8c86a4bb310/tenor.gif" alt="">
+      </div>
+    </div>
+  </div>
+  <!-- contact: -->
+  <div *ngIf="admin.id === chatBox.contact.id">
+    <div *ngIf="!deleteLoader[i]" [ngStyle]="{backgroundColor: !chatBox.activeSide.contact.isActive ? 'rgb(4 2 2 / 62%)' : 'rgba(0,0,0,0.4)', cursor: !chatBox.activeSide.contact.isActive ? 'pointer' : 'unset'}" class="card" [ngClass]="{'notActive': !chatBox.activeSide.contact.isActive}">
+      <div [ngStyle]="{backgroundColor: !chatBox.seen && chatBox.messages[chatBox.messages.length-1].owner.id !== admin.id ? 'lightgreen' : 'transparent'}" class="card-header msg_head">
+        <p *ngIf="!chatBox.seen && chatBox.messages[chatBox.messages.length-1].owner.id !== admin.id && chatBox.messages.length>1">New Message!</p>
+        <p *ngIf="!chatBox.seen && chatBox.messages[chatBox.messages.length-1].owner.id !== admin.id && chatBox.messages.length===1">Contact wants to chat!</p>
+
+        <button class="delete btn btn-danger btn-sm rounded-0 float-right" (click)="deleteBox(i, chatBox.id)" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </button>
+
+        <div class="d-flex bd-highlight">
+          <div class="user_info">
+            <span>{{chatBox.admin.username}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div (click)="onSetMessage(chatBox, i)" #messageBody (scroll)="setYposition(messageBody, i)" class="card-body msg_card_body">
+        <h2 class="enable" *ngIf="!chatBox.activeSide.contact.isActive">Click to enable...</h2>
+        <app-messages [messageLoading]="messageLoading" *ngIf="!boxesLoading[i]" [chatBox]="chatBox" [admin]="admin" [messages]="chatBox.messages"></app-messages>
+        <img *ngIf="boxesLoading[i]" src="https://media.tenor.com/images/0a000667c5aab43ac265d8c86a4bb310/tenor.gif" alt="">
+      </div>
+    </div>
+  </div>
+  <img *ngIf="deleteLoader[i]" src="https://thumbs.gfycat.com/AliveBriskLeopard-max-1mb.gif" alt="">
+</div>
+

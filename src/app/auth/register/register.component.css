@@ -1,0 +1,11 @@
+#register-form{
+  margin: 5%;
+}
+
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+
+form.ng-pending{
+  background-image: 'https://powerusers.microsoft.com/t5/image/serverpage/image-id/118082i204C32E01666789C/image-size/large?v=v2&px=999';
+}

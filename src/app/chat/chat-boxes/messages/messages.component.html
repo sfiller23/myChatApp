@@ -1,0 +1,18 @@
+
+  <div *ngFor="let message of messages; let i = index; let first = first; let last = last" class="d-flex mb-4" [ngClass]="{'justify-content-start': admin.id===message.owner.id && message.id!=='init', 'justify-content-end': admin.id!==message.owner.id && message.id!=='init'}">
+
+    <div style="max-width:100%" [ngClass]="{'msg_cotainer_send': admin.id===message.owner.id, 'msg_cotainer': admin.id!==message.owner.id && message.id!=='init'}">
+      {{message.content}}
+      <span [ngClass]="{'msg_time_send': admin.id===message.owner.id, 'msg_time': admin.id!==message.owner.id && message.id!=='init'}">{{message.timeString | date:'short'}}</span>
+       <img style="width: 20px; border-radius: 10px;" src="https://as2.ftcdn.net/jpg/01/90/05/45/500_F_190054581_j2DBZLabwjtWmJEINKwTxdym2oEK8vsi.jpg" class="messageSeen" *ngIf="chatBox.messages[i].owner.id === admin.id && chatBox.messages[i].seen">
+    </div>
+
+  </div>
+  <div *ngIf="admin.id===chatBox.admin.id">
+    <img style="width: 60px" *ngIf="chatBox.activeSide.admin.isActive && messageLoading" src="https://media.tenor.com/images/0a000667c5aab43ac265d8c86a4bb310/tenor.gif" alt="">
+  </div>
+  <div *ngIf="admin.id===chatBox.contact.id">
+    <img style="width: 60px" *ngIf="chatBox.activeSide.contact.isActive && messageLoading" src="https://media.tenor.com/images/0a000667c5aab43ac265d8c86a4bb310/tenor.gif" alt="">
+  </div>
+
+

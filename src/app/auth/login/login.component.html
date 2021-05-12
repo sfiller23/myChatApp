@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-4"></div>
+  <div id="register-form" class="col-md-4">
+    <h2 style="text-align: center;">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">User Name</label>
+        <input formControlName="username" type="username" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input (mouseleave)="setTouched()"  (click)="setUnTouched()" formControlName="password" type="password" class="form-control">
+      </div>
+      <div class="form-group">
+        <span *ngIf="loginForm.hasError('userNotExists')" class="alert alert-danger">User does not exists!</span>
+      </div>
+      <div class="form-group">
+        <img *ngIf="loginForm.pending" style="width: 60px;" src="https://media.tenor.com/images/0a000667c5aab43ac265d8c86a4bb310/tenor.gif" alt="">
+      </div>
+        <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Submit</button>
+
+    </form>
+  </div>
+  <div class="col-md-4"></div>
+</div>
