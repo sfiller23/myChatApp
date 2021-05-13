@@ -66,8 +66,8 @@ export class ChatBoxesComponent implements OnInit , OnDestroy, AfterViewChecked{
       this.chatBoxes = state.chatBoxes;
       if(this.admin){
         this.chatBoxes.forEach((box,index)=>{
-          if(this.admin.id === box.admin.id){
-            if(box.activeSide.admin.isActive){
+          if(this.admin.id === box.admin.id || this.admin.id === box.contact.id){
+            if(box.activeSide.admin.isActive || box.activeSide.contact.isActive){
               this.boxesLoading.fill(false);
                 if(state.isTextAreaOnFocus){
                   if(this.boxesYposition[index] === 0 || this.boxesYposition[index] === undefined){
@@ -77,18 +77,19 @@ export class ChatBoxesComponent implements OnInit , OnDestroy, AfterViewChecked{
                   }
                 }
               }
-            }else if(this.admin.id === box.contact.id){
-              if(box.activeSide.contact.isActive){
-                this.boxesLoading.fill(false);
-                  if(state.isTextAreaOnFocus){
-                    if(this.boxesYposition[index] === 0 || this.boxesYposition[index] === undefined){
-                      this.store.dispatch(
-                        ChatActions.setMessagesToSeen({currentBox: box})
-                      )
-                    }
-                  }
-                }
             }
+            // else if(this.admin.id === box.contact.id){
+            //   if(box.activeSide.contact.isActive){
+            //     this.boxesLoading.fill(false);
+            //       if(state.isTextAreaOnFocus){
+            //         if(this.boxesYposition[index] === 0 || this.boxesYposition[index] === undefined){
+            //           this.store.dispatch(
+            //             ChatActions.setMessagesToSeen({currentBox: box})
+            //           )
+            //         }
+            //       }
+            //     }
+            // }
 
           })
         }

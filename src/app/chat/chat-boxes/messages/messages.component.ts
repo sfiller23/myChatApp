@@ -35,19 +35,20 @@ export class MessagesComponent implements OnInit, OnDestroy {
       state=>{
         if(this.admin){
           state.chatBoxes.forEach(box=>{
-            if(this.admin.id === box.admin.id){
-              if(box.activeSide.admin.isActive){
-                if(box.messages[box.messages.length-1]){
-                  this.messageLoading = false;
-                }
-              }
-            }else if(this.admin.id === box.contact.id){
-              if(box.activeSide.contact.isActive){
+            if(this.admin.id === box.admin.id || this.admin.id === box.contact.id){
+              if(box.activeSide.admin.isActive || box.activeSide.contact.isActive){
                 if(box.messages[box.messages.length-1]){
                   this.messageLoading = false;
                 }
               }
             }
+            // else if(this.admin.id === box.contact.id){
+            //   if(box.activeSide.contact.isActive){
+            //     if(box.messages[box.messages.length-1]){
+            //       this.messageLoading = false;
+            //     }
+            //   }
+            // }
 
           })
         }

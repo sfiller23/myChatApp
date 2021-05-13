@@ -50,19 +50,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         if(state.chatBoxes.length === 0){
           this.isActive = false;
         }else{
-          this.isActive = false;
+          //this.isActive = false;
           if(this.admin){
             state.chatBoxes.forEach(((box, index)=>{
-              if(this.admin.id === box.admin.id){
-                if(box.activeSide.admin.isActive){
-                  this.isActive = true;
-                  this.setCurrentMessage({chatBox: box, index: index, boxes: state.chatBoxes, boxesMessage: this.boxesMessage});
-                  if(box.messages[box.messages.length-1].sent){
-                    this.messageLoading = false;
-                  }
-                }
-              }else if(this.admin.id === box.contact.id){
-                if(box.activeSide.contact.isActive){
+              if(this.admin.id === box.admin.id || this.admin.id === box.contact.id){
+                if(box.activeSide.admin.isActive || box.activeSide.contact.isActive){
                   this.isActive = true;
                   this.setCurrentMessage({chatBox: box, index: index, boxes: state.chatBoxes, boxesMessage: this.boxesMessage});
                   if(box.messages[box.messages.length-1].sent){
@@ -70,6 +62,15 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
                   }
                 }
               }
+              // else if(){
+              //   if(){
+              //     this.isActive = true;
+              //     this.setCurrentMessage({chatBox: box, index: index, boxes: state.chatBoxes, boxesMessage: this.boxesMessage});
+              //     if(box.messages[box.messages.length-1].sent){
+              //       this.messageLoading = false;
+              //     }
+              //   }
+              // }
             })
             )
           }
