@@ -151,7 +151,7 @@ margin-bottom: auto;
 margin-left: 10px;
 border-radius: 25px;
 background-color: #82ccdd;
-padding: 10px;
+padding: 6%;
 position: relative;
 }
 .msg_cotainer_send{
@@ -160,7 +160,7 @@ margin-bottom: auto;
 margin-right: 10px;
 border-radius: 25px;
 background-color: #78e08f;
-padding: 10px;
+padding: 6%;
 position: relative;
 }
 .msg_time{
