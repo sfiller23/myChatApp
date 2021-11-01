@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  APIaccessPoint: "https://mychatapp2-57b27-default-rtdb.europe-west1.firebasedatabase.app/"
+  APIaccessPoint: "https://mychatapp4-1f82e-default-rtdb.firebaseio.com/"
 };

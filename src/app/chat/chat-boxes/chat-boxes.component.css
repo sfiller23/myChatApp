@@ -15,11 +15,17 @@ body,html{
 .delete{
   width: 30px;
   height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .notActive:hover{
   box-shadow:white 0px -1px 15px 7px;
 
+}
+#close_sign{
+  color: black;
 }
 
 .chat{

@@ -5,10 +5,8 @@
         <p *ngIf="!chatBox.seen && chatBox.messages[chatBox.messages.length-1].owner.id !== admin.id && chatBox.messages.length>1">New Message!</p>
         <p *ngIf="!chatBox.seen && chatBox.messages[chatBox.messages.length-1].owner.id !== admin.id && chatBox.messages.length===1">Contact wants to chat!</p>
 
-        <button class="delete btn btn-danger btn-sm rounded-0 float-right" (click)="deleteBox(i, chatBox.id)" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
-          <button type="button" class="close" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <button class="delete btn btn-danger float-right" (click)="deleteBox(i, chatBox.id)" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+            <span id="close_sign" aria-hidden="true">&times;</span>
         </button>
 
         <div class="d-flex bd-highlight">
@@ -33,10 +31,8 @@
         <p *ngIf="!chatBox.seen && chatBox.messages[chatBox.messages.length-1].owner.id !== admin.id && chatBox.messages.length>1">New Message!</p>
         <p *ngIf="!chatBox.seen && chatBox.messages[chatBox.messages.length-1].owner.id !== admin.id && chatBox.messages.length===1">Contact wants to chat!</p>
 
-        <button class="delete btn btn-danger btn-sm rounded-0 float-right" (click)="deleteBox(i, chatBox.id)" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
-          <button type="button" class="close" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <button class="delete btn btn-danger float-right" (click)="deleteBox(i, chatBox.id)" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+            <span id="close_sign" aria-hidden="true">&times;</span>
         </button>
 
         <div class="d-flex bd-highlight">
